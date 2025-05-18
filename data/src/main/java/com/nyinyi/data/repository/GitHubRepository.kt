@@ -4,5 +4,5 @@ import com.nyinyi.domain_model.User
 import kotlinx.coroutines.flow.Flow
 
 interface GitHubRepository {
-    suspend fun getUsers(): Flow<List<User>>
+    fun getUsers(): Flow<List<User>>
 }

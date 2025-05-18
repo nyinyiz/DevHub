@@ -9,7 +9,7 @@ class GitHubRepositoryImpl @Inject constructor(
     private val api: GitHubApiService,
     private val mapper: GitHubUserMapper
 ) : GitHubRepository {
-    override suspend fun getUsers() = flowTransform {
+    override fun getUsers() = flowTransform {
         api.getUsers().let {
             mapper.mapToUserDomain(it)
         }
