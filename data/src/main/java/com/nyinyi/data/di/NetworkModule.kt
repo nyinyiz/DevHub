@@ -1,10 +1,10 @@
 package com.nyinyi.data.di
 
 import android.content.Context
+import com.nyinyi.data.BuildConfig
 import com.nyinyi.data.network.service.GitHubApiService
 import com.nyinyi.data.provider.OkHttpProvider
 import com.nyinyi.data.provider.RetrofitProvider
-import com.nyinyi.data.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

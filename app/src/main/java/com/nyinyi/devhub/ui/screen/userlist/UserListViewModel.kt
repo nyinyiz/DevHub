@@ -51,14 +51,14 @@ class UserListViewModel @Inject constructor(
         getUserListUseCase()
             .onStart {
                 Timber.d("Fetching user list...")
-                _state.update { it.copy(isLoading = true) }
+                _state.update { it.copy(isLoading = true, throwable = null) }
             }
             .onEach { users ->
                 // Complete the code here
                 users.forEach {
                     Timber.d("User: $it")
                 }
-                _state.update { it.copy(isLoading = false, users = users) }
+                _state.update { it.copy(isLoading = false, users = users, throwable = null) }
             }
             .flowOn(dispatcherProvider.io())
             .catch { e ->
