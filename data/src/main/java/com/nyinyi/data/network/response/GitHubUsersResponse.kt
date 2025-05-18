@@ -2,7 +2,6 @@ package com.nyinyi.data.network.response
 
 import com.google.gson.annotations.SerializedName
 
-
 data class GitHubUsersResponse(
     val items: List<GitHubUser> = emptyList()
 )

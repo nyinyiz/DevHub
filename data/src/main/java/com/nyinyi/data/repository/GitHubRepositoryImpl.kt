@@ -1,6 +1,7 @@
 package com.nyinyi.data.repository
 
 import com.nyinyi.data.mapper.GitHubUserMapper
+import com.nyinyi.data.network.response.GitHubUsersResponse
 import com.nyinyi.data.network.service.GitHubApiService
 import com.nyinyi.data.utils.flowTransform
 import javax.inject.Inject
@@ -11,7 +12,7 @@ class GitHubRepositoryImpl @Inject constructor(
 ) : GitHubRepository {
     override fun getUsers() = flowTransform {
         api.getUsers().let {
-            mapper.mapToUserDomain(it)
+            mapper.mapToUserDomain(GitHubUsersResponse(it))
         }
     }
 }

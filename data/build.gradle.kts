@@ -4,7 +4,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.ksp)
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 fun loadLocalProperties(project: Project): Properties {
@@ -87,9 +88,8 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
-    ksp(libs.hilt.dagger.compiler)
     implementation(libs.hilt.navigation.compose)
-    ksp(libs.hilt.hilt.compiler)
+    kapt(libs.hilt.compiler)
 
     // OkHttp
     api(libs.okhttp)
