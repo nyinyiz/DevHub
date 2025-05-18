@@ -1,4 +1,4 @@
-package com.nyinyi.devhub
+package com.nyinyi.common
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
