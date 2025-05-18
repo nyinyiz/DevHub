@@ -1,0 +1,7 @@
+ext {
+    buildConfig = [
+            minSdk    : 23,
+            targetSdk : 33,
+            compileSdk: 33
+    ]
+}
