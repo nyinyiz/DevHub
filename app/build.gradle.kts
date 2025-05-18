@@ -46,6 +46,7 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":domain"))
+    implementation(project(":domain-model"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

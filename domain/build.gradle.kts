@@ -34,6 +34,12 @@ android {
 
 dependencies {
 
+    implementation(project(":data"))
+    implementation(project(":domain-model"))
+
+    //Inject
+    implementation(libs.inject)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
