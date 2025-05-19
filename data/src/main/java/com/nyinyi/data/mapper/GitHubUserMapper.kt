@@ -70,6 +70,7 @@ class GitHubUserMapper @Inject constructor() {
                 htmlUrl = it.htmlUrl ?: "",
                 fork = it.fork ?: false,
                 starCount = it.starCount ?: 0,
+                updatedAt = it.updatedAt ?: "",
             )
         }.orEmpty()
     }

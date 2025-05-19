@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.nyinyi.common.exceptions.DisconnectException
 import com.nyinyi.common.utils.ConnectionObserver
 import com.nyinyi.devhub.provider.DispatcherProvider
+import com.nyinyi.domain.usecase.GetSearchUserListUseCase
 import com.nyinyi.domain.usecase.GetUserListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,6 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class UserListViewModel @Inject constructor(
     private val getUserListUseCase: GetUserListUseCase,
+    private val getSearchUserListUseCase: GetSearchUserListUseCase,
     private val connectionObserver: ConnectionObserver,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {
@@ -47,6 +49,26 @@ class UserListViewModel @Inject constructor(
 
     fun getData() {
         getUserListUseCase()
+            .onStart {
+                Timber.d("Fetching user list...")
+                _state.update { it.copy(isLoading = true, throwable = null) }
+            }
+            .onEach { users ->
+                users.forEach {
+                    Timber.d("User: $it")
+                }
+                _state.update { it.copy(isLoading = false, users = users, throwable = null) }
+            }
+            .flowOn(dispatcherProvider.io())
+            .catch { e ->
+                Timber.e(e, "Error fetching user list")
+                _state.update { it.copy(isLoading = false, throwable = e) }
+            }
+            .launchIn(viewModelScope)
+    }
+
+    fun searchUsers(query: String) {
+        getSearchUserListUseCase(query)
             .onStart {
                 Timber.d("Fetching user list...")
                 _state.update { it.copy(isLoading = true, throwable = null) }

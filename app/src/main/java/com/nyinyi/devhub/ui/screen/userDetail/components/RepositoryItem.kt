@@ -27,8 +27,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.nyinyi.common.utils.formatCount
 import com.nyinyi.devhub.ui.theme.SecondaryText
+import com.nyinyi.devhub.ui.utils.formatDateToAgo
 import com.nyinyi.devhub.ui.utils.getLanguageColor
 import com.nyinyi.domain_model.Repository
 
@@ -66,6 +68,17 @@ fun RepositoryItem(repository: Repository, onClickWebView: (String) -> Unit) {
                     ),
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
+                )
+            }
+
+            if (repository.updatedAt.isNotEmpty()) {
+                Text(
+                    text = "Updated ${formatDateToAgo(repository.updatedAt)}",
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        fontSize = 12.sp,
+                        color = Color.Gray,
+                        fontWeight = FontWeight.Medium
+                    )
                 )
             }
 

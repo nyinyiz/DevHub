@@ -83,6 +83,7 @@ class UserDetailViewModel @Inject constructor(
                     it.copy(
                         isRepoLoading = false,
                         userRepos = repositories.filter { it.fork != true }
+                            .sortedByDescending { it.updatedAt }
                     )
                 }
             }

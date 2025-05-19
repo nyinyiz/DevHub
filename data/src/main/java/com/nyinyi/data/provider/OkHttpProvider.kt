@@ -17,6 +17,7 @@ object OkHttpProvider {
         override fun intercept(chain: Interceptor.Chain): Response {
             val request = chain.request().newBuilder()
                 .header("Authorization", "Bearer $authToken")
+                .header("Accept", "application/vnd.github+json")
                 .build()
             return chain.proceed(request)
         }

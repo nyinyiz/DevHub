@@ -6,5 +6,6 @@ object Constants {
         const val GET_USER_LIST = "users"
         const val GET_USER_DETAIL = "users/{username}"
         const val GET_USER_REPOS = "users/{username}/repos"
+        const val SEARCH_USER = "search/users"
     }
 }
