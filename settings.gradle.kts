@@ -21,4 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "DevHub"
 include(":app")
- 
+include(":common")
+include(":data")
+include(":domain")
+include(":domain-model")
