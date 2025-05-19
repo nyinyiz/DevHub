@@ -11,11 +11,11 @@ plugins {
 fun loadLocalProperties(project: Project): Properties {
     val properties = Properties()
     val localPropertiesFile =
-        File(project.rootProject.file("local.properties").absolutePath) // Corrected path
+        File(project.rootProject.file("local.properties").absolutePath)
     if (localPropertiesFile.exists()) {
         properties.load(localPropertiesFile.inputStream())
     } else {
-        println("local.properties file not found.") // Add this line
+        println("local.properties file not found.")
     }
     return properties
 }
@@ -35,7 +35,7 @@ android {
         release {
             val localProperties = loadLocalProperties(project)
             val authToken =
-                localProperties.getProperty("auth-token") ?: "your_api_key_here" // Default value
+                localProperties.getProperty("auth-token") ?: "your_api_key_here"
             buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
             buildConfigField("String", "AUTH_TOKEN", "\"$authToken\"")
             isMinifyEnabled = false
@@ -47,7 +47,7 @@ android {
         debug {
             val localProperties = loadLocalProperties(project)
             val authToken =
-                localProperties.getProperty("auth-token") ?: "your_api_key_here" // Default value
+                localProperties.getProperty("auth-token") ?: "your_api_key_here"
             buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
             buildConfigField("String", "AUTH_TOKEN", "\"$authToken\"")
             isMinifyEnabled = false

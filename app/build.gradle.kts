@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
@@ -67,8 +68,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // Coil
+    implementation(libs.coil.compose)
     // Timber
     implementation(libs.timber)
+
+    // Google Accompanist
+    implementation(libs.accompanist.systemuicontroller)
 
     // Hilt
     implementation(libs.hilt.android)
