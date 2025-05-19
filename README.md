@@ -1,10 +1,21 @@
-# DevHub
+<h1 align="center">DevHub</h1>
 
 ## 📱 Overview
 
 DevHub is an Android application that provides a clean and intuitive interface for browsing GitHub
 users and their repositories. Built with modern Android development practices, the app showcases a
 well-structured clean architecture approach.
+
+## 📸 ScreenShots
+<p float="left">
+  <img src="screenshots/1.png" width="22%" />
+  <img src="screenshots/2.png" width="22%" />
+  <img src="screenshots/5.png" width="22%" />
+  <img src="screenshots/6.png" width="22%" />
+  <img src="screenshots/3.png" width="22%" />
+  <img src="screenshots/4.png" width="22%" />
+  <img src="screenshots/7.png" width="22%" />
+</p>
 
 ## ✨ Features
 
@@ -62,7 +73,6 @@ git clone https://github.com/nyinyiz/DevHub.git
 ### 2. Open in Android Studio
 
 - Launch **Android Studio**
-- Select **Open an existing project**
 - Navigate to the cloned `devhub` repository folder and open it
 
 ### 3. Sync Project
@@ -78,7 +88,7 @@ git clone https://github.com/nyinyiz/DevHub.git
 
 ### GitHub API Token
 
-The app uses the public GitHub API. To increase rate limits and avoid hitting the public API limits:
+The app uses the public GitHub API.
 
 1. Generate a [GitHub Personal Access Token](https://github.com/settings/tokens)
 2. Add it to your `local.properties` file:
@@ -96,4 +106,4 @@ auth-token=your_token_here
 
 ## 👤 Author
 
-Created by Nyi Nyi Zaw
+Created by **Nyi Nyi Zaw** (nyinyizaw.dev@gmail.com)
