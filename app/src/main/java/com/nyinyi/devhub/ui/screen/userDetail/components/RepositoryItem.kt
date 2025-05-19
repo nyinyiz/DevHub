@@ -43,7 +43,7 @@ fun RepositoryItem(repository: Repository, onClickWebView: (String) -> Unit) {
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -62,7 +62,7 @@ fun RepositoryItem(repository: Repository, onClickWebView: (String) -> Unit) {
                     text = repository.description,
                     style = MaterialTheme.typography.bodySmall.copy(
                         color = SecondaryText,
-                        fontWeight = FontWeight.Medium,
+                        fontWeight = FontWeight.Medium
                     ),
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
@@ -91,7 +91,7 @@ fun RepositoryItem(repository: Repository, onClickWebView: (String) -> Unit) {
                         )
                         Text(
                             text = repository.language,
-                            style = MaterialTheme.typography.bodySmall,
+                            style = MaterialTheme.typography.bodySmall
                         )
                     }
                 }
@@ -108,7 +108,7 @@ fun RepositoryItem(repository: Repository, onClickWebView: (String) -> Unit) {
                     )
                     Text(
                         text = formatCount(repository.starCount),
-                        style = MaterialTheme.typography.bodySmall,
+                        style = MaterialTheme.typography.bodySmall
                     )
                 }
             }

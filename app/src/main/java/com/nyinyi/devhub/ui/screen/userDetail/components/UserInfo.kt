@@ -21,7 +21,7 @@ import com.nyinyi.domain_model.UserDetail
 @Composable
 fun UserInfo(
     userDetail: UserDetail,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
@@ -30,13 +30,13 @@ fun UserInfo(
     ) {
         Text(
             text = userDetail.login,
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleMedium
         )
         Text(
             text = userDetail.name,
             style = MaterialTheme.typography.bodySmall.copy(
                 color = MaterialTheme.colorScheme.secondary
-            ),
+            )
         )
 
         if (userDetail.location.isNotEmpty()) {
@@ -48,13 +48,13 @@ fun UserInfo(
                     modifier = Modifier.size(16.dp),
                     imageVector = Icons.Outlined.LocationOn,
                     contentDescription = "Location",
-                    tint = SecondaryText,
+                    tint = SecondaryText
                 )
                 Text(
                     text = userDetail.location,
                     style = MaterialTheme.typography.bodySmall.copy(
-                        color = SecondaryText,
-                    ),
+                        color = SecondaryText
+                    )
                 )
             }
         }
@@ -68,13 +68,13 @@ fun UserInfo(
                     modifier = Modifier.size(16.dp),
                     imageVector = Icons.Outlined.Email,
                     contentDescription = "Email",
-                    tint = SecondaryText,
+                    tint = SecondaryText
                 )
                 Text(
                     text = userDetail.email,
                     style = MaterialTheme.typography.bodySmall.copy(
-                        color = SecondaryText,
-                    ),
+                        color = SecondaryText
+                    )
                 )
             }
         }

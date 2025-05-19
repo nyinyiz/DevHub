@@ -27,7 +27,7 @@ fun SplashScreen(onAnimationFinished: () -> Unit) {
     LaunchedEffect(key1 = true) {
         scale.animateTo(
             targetValue = 1f,
-            animationSpec = tween(durationMillis = 1000),
+            animationSpec = tween(durationMillis = 1000)
         )
         delay(500)
         onAnimationFinished()
@@ -35,7 +35,7 @@ fun SplashScreen(onAnimationFinished: () -> Unit) {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color.Transparent,
+        color = Color.Transparent
     ) {
         Box(
             modifier = Modifier

@@ -64,9 +64,8 @@ fun UserDetailScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues),
-            color = Color.Transparent,
+            color = Color.Transparent
         ) {
-
             Column(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
@@ -85,7 +84,7 @@ fun UserDetailScreen(
                     )
 
                     userDetail != null -> UserDetailCard(
-                        userDetail = userDetail,
+                        userDetail = userDetail
                     )
                 }
                 Text(
@@ -121,8 +120,8 @@ fun UserDetailScreen(
                             items(repo.size) { index ->
                                 RepositoryItem(
                                     repository = repo[index],
-                                    onClickWebView = {
-
+                                    onClickWebView = { url ->
+                                        onClickWebView(url)
                                     }
                                 )
                             }
@@ -134,7 +133,7 @@ fun UserDetailScreen(
                                     text = "No repositories found",
                                     style = MaterialTheme.typography.bodyMedium,
                                     modifier = Modifier.padding(
-                                        start = 8.dp,
+                                        start = 8.dp
                                     )
                                 )
                             }
@@ -142,7 +141,6 @@ fun UserDetailScreen(
                     }
                 }
             }
-
         }
     }
 }

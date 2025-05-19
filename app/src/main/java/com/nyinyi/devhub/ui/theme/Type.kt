@@ -12,30 +12,30 @@ val Typography = Typography(
         fontFamily = FontFamily.SansSerif,
         fontWeight = FontWeight.Bold,
         fontSize = 22.sp,
-        color = PrimaryText,
+        color = PrimaryText
     ),
     titleMedium = TextStyle(
         fontFamily = FontFamily.SansSerif,
         fontWeight = FontWeight.Medium,
         fontSize = 18.sp,
-        color = PrimaryText,
+        color = PrimaryText
     ),
     bodyMedium = TextStyle(
         fontFamily = FontFamily.SansSerif,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
-        color = PrimaryText,
+        color = PrimaryText
     ),
     bodySmall = TextStyle(
         fontFamily = FontFamily.SansSerif,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        color = PrimaryText,
+        color = PrimaryText
     ),
     labelSmall = TextStyle(
         fontFamily = FontFamily.SansSerif,
         fontWeight = FontWeight.Normal,
         fontSize = 11.sp,
-        color = PrimaryText,
+        color = PrimaryText
     )
 )

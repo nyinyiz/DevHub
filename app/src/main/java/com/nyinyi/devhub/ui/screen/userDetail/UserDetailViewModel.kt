@@ -43,7 +43,6 @@ class UserDetailViewModel @Inject constructor(
     }
 
     private fun fetchUserData(userName: String) {
-
         getUserDetail(userName)
         getUserRepositories(userName)
     }
@@ -83,7 +82,7 @@ class UserDetailViewModel @Inject constructor(
                 _state.update {
                     it.copy(
                         isRepoLoading = false,
-                        userRepos = repositories.filter { it.fork != true },
+                        userRepos = repositories.filter { it.fork != true }
                     )
                 }
             }

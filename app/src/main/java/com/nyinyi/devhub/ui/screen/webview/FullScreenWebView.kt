@@ -15,13 +15,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
-
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun FullScreenWebView(url: String, onBack: () -> Unit) {
     Scaffold(
         topBar = {
-            WebViewTopAppBar(onClose = onBack)
+            WebViewTopAppBar(
+                title = url.substringAfterLast("/"),
+                onClose = onBack
+            )
         }
     ) { paddingValues ->
         InAppWebView(
@@ -50,7 +52,7 @@ fun WebViewTopAppBar(
                 androidx.compose.material3.Icon(
                     Icons.AutoMirrored.Outlined.ArrowBack,
                     contentDescription = "Back",
-                    tint = Color.Black,
+                    tint = Color.Black
                 )
             }
         },

@@ -27,7 +27,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-
 @Composable
 fun ShimmerUserDetailCard() {
     val shimmerColors = listOf(
@@ -45,7 +44,8 @@ fun ShimmerUserDetailCard() {
                 durationMillis = 1200,
                 easing = FastOutSlowInEasing
             )
-        ), label = "shimmer"
+        ),
+        label = "shimmer"
     )
 
     val brush = Brush.linearGradient(

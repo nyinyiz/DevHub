@@ -20,7 +20,7 @@ import com.nyinyi.domain_model.UserDetail
 
 @Composable
 fun UserDetailCard(
-    userDetail: UserDetail,
+    userDetail: UserDetail
 ) {
     Card(
         modifier = Modifier
@@ -28,11 +28,11 @@ fun UserDetailCard(
             .padding(vertical = 4.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
         ) {
             Row(
                 modifier = Modifier
@@ -45,7 +45,7 @@ fun UserDetailCard(
                 Spacer(modifier = Modifier.width(12.dp))
                 UserInfo(
                     userDetail = userDetail,
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(1f)
                 )
             }
             Row(
@@ -106,7 +106,7 @@ fun UserDetailCardPreview() {
             followers = 2,
             following = 3,
             createdAt = " createdAt",
-            updatedAt = " updatedAt",
+            updatedAt = " updatedAt"
         )
     )
 }

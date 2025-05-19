@@ -25,7 +25,7 @@ fun FollowButton(
         shape = RoundedCornerShape(18.dp),
         colors = ButtonDefaults.filledTonalButtonColors(
             containerColor = Primary.copy(alpha = 0.1f),
-            contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+            contentColor = MaterialTheme.colorScheme.onSecondaryContainer
         )
     ) {
         Text(
@@ -34,7 +34,7 @@ fun FollowButton(
                 fontSize = 12.sp,
                 textAlign = TextAlign.Center,
                 color = Primary
-            ),
+            )
         )
     }
 }

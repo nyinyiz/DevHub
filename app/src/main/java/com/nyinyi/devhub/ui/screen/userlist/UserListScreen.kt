@@ -86,7 +86,7 @@ fun UserListScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues),
-            color = Color.Transparent,
+            color = Color.Transparent
         ) {
             Column(
                 modifier = Modifier.padding(16.dp),
@@ -127,10 +127,12 @@ fun UserListScreen(
                 ) {
                     items(state.value.users.size) { index ->
                         UserListItem(
-                            user = state.value.users[index], onUserClick =
-                                { user ->
-                                    onUserClick(user.name)
-                                })
+                            user = state.value.users[index],
+                            onUserClick =
+                            { user ->
+                                onUserClick(user.name)
+                            }
+                        )
                     }
                 }
             }

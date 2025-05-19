@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 
-
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun InAppWebView(url: String, modifier: Modifier = Modifier) {
@@ -34,12 +33,10 @@ fun InAppWebView(url: String, modifier: Modifier = Modifier) {
 
                 webViewClient = object : WebViewClient() {
                     override fun shouldOverrideUrlLoading(view: WebView?, url: String): Boolean {
-
                         view?.loadUrl(url)
                         return true
                     }
                 }
-
 
                 loadUrl(url)
                 this
@@ -60,6 +57,5 @@ fun InAppWebView(url: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun InAppWebViewPreview() {
-
     InAppWebView(url = "https:google.com")
 }

@@ -40,7 +40,7 @@ fun UserListItem(user: User, onUserClick: (User) -> Unit) {
         onClick = { onUserClick(user) },
         elevation = CardDefaults.cardElevation(
             defaultElevation = 0.5.dp
-        ),
+        )
     ) {
         Row(
             modifier = Modifier
@@ -66,14 +66,14 @@ fun UserListItem(user: User, onUserClick: (User) -> Unit) {
             Icon(
                 Icons.AutoMirrored.Outlined.KeyboardArrowRight,
                 contentDescription = "Go to details",
-                tint = Color.Gray,
+                tint = Color.Gray
             )
         }
     }
 }
 
 @Preview(
-    showBackground = true,
+    showBackground = true
 )
 @Composable
 fun UserListItemPreview() {

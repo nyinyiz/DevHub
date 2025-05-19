@@ -45,7 +45,8 @@ fun ShimmerUserListItem() {
                 durationMillis = 1200,
                 easing = FastOutSlowInEasing
             )
-        ), label = "shimmer"
+        ),
+        label = "shimmer"
     )
 
     val brush = Brush.linearGradient(
@@ -61,7 +62,8 @@ fun ShimmerUserListItem() {
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
-        ), elevation = CardDefaults.cardElevation(
+        ),
+        elevation = CardDefaults.cardElevation(
             defaultElevation = 0.5.dp
         )
     ) {

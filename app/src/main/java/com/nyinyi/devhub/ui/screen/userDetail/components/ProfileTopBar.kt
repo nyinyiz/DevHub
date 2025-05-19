@@ -18,7 +18,7 @@ fun ProfileTopBar(userName: String, onBack: () -> Unit) {
     TopAppBar(
         title = {
             Text(
-                "${userName}'s Profile",
+                "$userName's Profile",
                 style = MaterialTheme.typography.titleLarge
             )
         },
@@ -27,7 +27,7 @@ fun ProfileTopBar(userName: String, onBack: () -> Unit) {
                 Icon(
                     Icons.AutoMirrored.Outlined.ArrowBack,
                     contentDescription = "Back",
-                    tint = Color.Black,
+                    tint = Color.Black
                 )
             }
         },

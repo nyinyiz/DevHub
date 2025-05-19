@@ -31,14 +31,13 @@ import androidx.compose.ui.unit.sp
 import com.nyinyi.devhub.ui.theme.Background
 import com.nyinyi.devhub.ui.theme.PrimaryText
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
-    placeholder: String = "Search",
+    placeholder: String = "Search"
 ) {
     TextField(
         value = value,
@@ -55,7 +54,7 @@ fun SearchBar(
             fontFamily = FontFamily.SansSerif,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
-            color = PrimaryText,
+            color = PrimaryText
         ),
         leadingIcon = {
             Icon(
@@ -80,8 +79,8 @@ fun SearchBar(
             disabledIndicatorColor = Color.Transparent,
             focusedContainerColor = Background,
             unfocusedContainerColor = Background,
-            disabledContainerColor = Color.White,
-        ),
+            disabledContainerColor = Color.White
+        )
     )
 }
 
