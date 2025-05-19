@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.nyinyi.devhub.ui.theme.SecondaryText
 import com.nyinyi.domain_model.UserDetail
 
 @Composable
@@ -43,12 +44,12 @@ fun UserInfo(
                 Icon(
                     imageVector = Icons.Default.LocationOn,
                     contentDescription = "Location",
-                    tint = MaterialTheme.colorScheme.secondary
+                    tint = SecondaryText,
                 )
                 Text(
                     text = userDetail.location,
                     style = MaterialTheme.typography.bodySmall.copy(
-                        color = MaterialTheme.colorScheme.secondary
+                        color = SecondaryText,
                     ),
                 )
             }

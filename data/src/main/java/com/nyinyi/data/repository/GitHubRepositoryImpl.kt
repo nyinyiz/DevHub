@@ -21,4 +21,10 @@ class GitHubRepositoryImpl @Inject constructor(
             mapper.mapToUserDetailDomain(it)
         }
     }
+
+    override fun getUserRepositories(username: String) = flowTransform {
+        api.getUserRepos(username).let {
+            mapper.mapToRepositoryDomain(it)
+        }
+    }
 }

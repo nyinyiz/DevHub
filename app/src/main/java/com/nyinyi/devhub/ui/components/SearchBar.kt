@@ -73,6 +73,7 @@ fun SearchBar(
         shape = RoundedCornerShape(8.dp),
         colors = TextFieldDefaults.colors(
             focusedTextColor = PrimaryText,
+            unfocusedTextColor = Color.Gray,
             cursorColor = PrimaryText,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,

@@ -19,11 +19,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nyinyi.devhub.ui.components.ErrorStatus
 import com.nyinyi.devhub.ui.components.LoadingStatus
 import com.nyinyi.devhub.ui.screen.userDetail.components.ProfileTopBar
+import com.nyinyi.devhub.ui.screen.userDetail.components.RepositoryItem
 import com.nyinyi.devhub.ui.screen.userDetail.components.UserDetailCard
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,9 +40,11 @@ fun UserDetailScreen(
     val userDetail = state.value.userDetail
     val isLoading = state.value.isLoading
     val throwable = state.value.throwable
+    val repo = state.value.userRepos
+    val isRepoLoading = state.value.isRepoLoading
 
     LaunchedEffect(userName) {
-        viewModel.checkConnectionAndGetData(userName)
+        viewModel.loadUserData(userName)
     }
 
     Scaffold(
@@ -61,54 +65,86 @@ fun UserDetailScreen(
                 .padding(paddingValues),
             color = Color.Transparent,
         ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                item {
-                    when {
-                        isLoading -> LoadingStatus(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp)
-                        )
-
-                        throwable != null -> ErrorStatus(
-                            throwable = throwable,
-                            onRetry = { viewModel.checkConnectionAndGetData(userName) },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp)
-                        )
-
-                        userDetail != null -> {
-                            UserDetailCard(
-                                userDetail = userDetail,
-                            )
-                        }
-                    }
-                }
-                item {
-                    Text(
-                        text = "Repositories",
-                        style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.padding(
-                            start = 8.dp,
-                        )
-                    )
-                }
-            }
 
             Column(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
                     .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.Start
             ) {
+                when {
+                    isLoading -> LoadingStatus(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                    )
 
+                    throwable != null -> ErrorStatus(
+                        throwable = throwable,
+                        onRetry = { viewModel.loadUserData(userName) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                    )
+
+                    userDetail != null -> UserDetailCard(
+                        userDetail = userDetail,
+                    )
+                }
+                Text(
+                    text = "Repositories",
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier.padding(
+                        start = 8.dp,
+                        top = 8.dp,
+                        bottom = 8.dp
+                    )
+                )
+
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    when {
+                        isRepoLoading -> {
+                            item {
+                                LoadingStatus(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(16.dp)
+                                )
+                            }
+                        }
+
+                        repo.isNotEmpty() -> {
+                            items(repo.size) { index ->
+                                RepositoryItem(
+                                    repository = repo[index],
+                                    onClickWebView = {
+
+                                    }
+                                )
+                            }
+                        }
+
+                        repo.isEmpty() -> {
+                            item {
+                                Text(
+                                    text = "No repositories found",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    modifier = Modifier.padding(
+                                        start = 8.dp,
+                                    )
+                                )
+                            }
+                        }
+                    }
+                }
             }
+
         }
     }
 }

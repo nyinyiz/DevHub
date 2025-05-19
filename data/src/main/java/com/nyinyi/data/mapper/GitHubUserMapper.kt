@@ -1,7 +1,9 @@
 package com.nyinyi.data.mapper
 
 import com.nyinyi.data.network.response.GitHubUserDetailResponse
+import com.nyinyi.data.network.response.GitHubUserRepoResponse
 import com.nyinyi.data.network.response.GitHubUsersResponse
+import com.nyinyi.domain_model.Repository
 import com.nyinyi.domain_model.User
 import com.nyinyi.domain_model.UserDetail
 import javax.inject.Inject
@@ -38,13 +40,13 @@ class GitHubUserMapper @Inject constructor() {
             receivedEventsUrl = userResponse.receivedEventsUrl ?: "",
             type = userResponse.type ?: "",
             userViewType = userResponse.userViewType ?: "",
-            siteAdmin = userResponse.siteAdmin ?: false,
+            siteAdmin = userResponse.siteAdmin == true,
             name = userResponse.name ?: "",
             company = userResponse.company ?: "",
             blog = userResponse.blog ?: "",
             location = userResponse.location ?: "",
             email = userResponse.email ?: "",
-            hireable = userResponse.hireable ?: false,
+            hireable = userResponse.hireable == true,
             bio = userResponse.bio ?: "",
             twitterUsername = userResponse.twitterUsername ?: "",
             publicRepos = userResponse.publicRepos ?: 0,
@@ -54,5 +56,21 @@ class GitHubUserMapper @Inject constructor() {
             createdAt = userResponse.createdAt ?: "",
             updatedAt = userResponse.updatedAt ?: "",
         )
+    }
+
+    fun mapToRepositoryDomain(userResponse: List<GitHubUserRepoResponse>): List<Repository> {
+        return userResponse.map {
+            Repository(
+                id = it.id ?: 0,
+                name = it.name ?: "",
+                fullName = it.fullName ?: "",
+                description = it.description ?: "",
+                language = it.language ?: "",
+                private = it.private ?: false,
+                htmlUrl = it.htmlUrl ?: "",
+                fork = it.fork ?: false,
+                starCount = it.starCount ?: 0,
+            )
+        }.orEmpty()
     }
 }
