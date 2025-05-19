@@ -33,8 +33,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.nyinyi.devhub.R
 import com.nyinyi.devhub.ui.components.ErrorStatus
-import com.nyinyi.devhub.ui.components.LoadingStatus
 import com.nyinyi.devhub.ui.components.SearchBar
+import com.nyinyi.devhub.ui.screen.userlist.component.ShimmerUserListItem
+import com.nyinyi.devhub.ui.screen.userlist.component.UserListItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -101,10 +102,14 @@ fun UserListScreen(
 
                 if (state.value.isLoading || state.value.throwable != null) {
                     if (state.value.isLoading) {
-                        LoadingStatus(
-                            modifier = Modifier
-                                .align(Alignment.CenterHorizontally)
-                        )
+                        LazyColumn(
+                            modifier = Modifier.fillMaxSize(),
+                            state = listState
+                        ) {
+                            items(10) {
+                                ShimmerUserListItem()
+                            }
+                        }
                     } else if (state.value.throwable != null) {
                         ErrorStatus(
                             throwable = state.value.throwable,

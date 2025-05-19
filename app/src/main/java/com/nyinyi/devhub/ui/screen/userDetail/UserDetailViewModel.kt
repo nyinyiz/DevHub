@@ -43,6 +43,7 @@ class UserDetailViewModel @Inject constructor(
     }
 
     private fun fetchUserData(userName: String) {
+
         getUserDetail(userName)
         getUserRepositories(userName)
     }

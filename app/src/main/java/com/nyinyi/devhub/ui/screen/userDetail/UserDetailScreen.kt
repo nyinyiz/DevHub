@@ -26,6 +26,7 @@ import com.nyinyi.devhub.ui.components.ErrorStatus
 import com.nyinyi.devhub.ui.components.LoadingStatus
 import com.nyinyi.devhub.ui.screen.userDetail.components.ProfileTopBar
 import com.nyinyi.devhub.ui.screen.userDetail.components.RepositoryItem
+import com.nyinyi.devhub.ui.screen.userDetail.components.ShimmerUserDetailCard
 import com.nyinyi.devhub.ui.screen.userDetail.components.UserDetailCard
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -73,11 +74,7 @@ fun UserDetailScreen(
                 horizontalAlignment = Alignment.Start
             ) {
                 when {
-                    isLoading -> LoadingStatus(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp)
-                    )
+                    isLoading -> ShimmerUserDetailCard()
 
                     throwable != null -> ErrorStatus(
                         throwable = throwable,

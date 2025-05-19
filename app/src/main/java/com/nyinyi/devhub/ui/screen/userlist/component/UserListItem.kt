@@ -1,4 +1,4 @@
-package com.nyinyi.devhub.ui.screen.userlist
+package com.nyinyi.devhub.ui.screen.userlist.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

@@ -7,6 +7,7 @@ import com.nyinyi.common.utils.ConnectionObserver
 import com.nyinyi.devhub.provider.DispatcherProvider
 import com.nyinyi.domain.usecase.GetUserListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
