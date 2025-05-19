@@ -3,20 +3,15 @@ package com.nyinyi.devhub.ui.screen.userlist
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -30,15 +25,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.nyinyi.devhub.R
+import com.nyinyi.devhub.ui.components.ErrorStatus
+import com.nyinyi.devhub.ui.components.LoadingStatus
+import com.nyinyi.devhub.ui.components.SearchBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,7 +43,7 @@ fun UserListScreen(
     onUserClick: (String) -> Unit = {}
 ) {
     val state = viewModel.state.collectAsState()
-
+    val listState = rememberLazyListState()
     var searchText by rememberSaveable(stateSaver = TextFieldValue.Saver) {
         mutableStateOf(TextFieldValue(""))
     }
@@ -73,7 +69,9 @@ fun UserListScreen(
                     AsyncImage(
                         model = R.mipmap.ic_launcher_round,
                         contentDescription = stringResource(R.string.app_name),
-                        modifier = Modifier.padding(8.dp)
+                        modifier = Modifier
+                            .size(50.dp)
+                            .padding(8.dp)
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -93,34 +91,34 @@ fun UserListScreen(
                 modifier = Modifier.padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                TextField(
+                SearchBar(
                     value = searchText,
                     onValueChange = { searchText = it },
                     modifier = Modifier
-                        .fillMaxWidth()
                         .padding(bottom = 16.dp),
-                    textStyle = TextStyle(fontSize = 16.sp),
-                    leadingIcon = {
-                        Icon(
-                            Icons.Filled.Search,
-                            contentDescription = "Search",
-                            tint = Color.Gray
-                        )
-                    },
-                    placeholder = { Text("Search GitHub Users", color = Color.Gray) },
-                    shape = RoundedCornerShape(8.dp),
-                    colors = TextFieldDefaults.colors(
-                        focusedTextColor = Color.Black,
-                        unfocusedTextColor = Color.Black,
-                        cursorColor = Color.Black,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        disabledIndicatorColor = Color.Transparent
-                    )
+                    placeholder = "Search GitHub Users"
                 )
 
+                if (state.value.isLoading || state.value.throwable != null) {
+                    if (state.value.isLoading) {
+                        LoadingStatus(
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                        )
+                    } else if (state.value.throwable != null) {
+                        ErrorStatus(
+                            throwable = state.value.throwable,
+                            onRetry = { viewModel.getData() },
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                                .padding(vertical = 4.dp)
+                        )
+                    }
+                }
+
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
+                    state = listState
                 ) {
                     items(state.value.users.size) { index ->
                         UserListItem(

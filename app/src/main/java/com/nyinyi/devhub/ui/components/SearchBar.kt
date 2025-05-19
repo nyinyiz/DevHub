@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -21,6 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,14 +45,18 @@ fun SearchBar(
         onValueChange = onValueChange,
         modifier = modifier
             .fillMaxWidth()
-            .padding(bottom = 16.dp)
             .shadow(elevation = 2.dp, shape = RoundedCornerShape(8.dp)) // Add a shadow
             .border(
                 width = 1.dp,
                 color = Color(0xFFE0E0E0),
                 shape = RoundedCornerShape(8.dp)
             ),
-        textStyle = TextStyle(fontSize = 16.sp),
+        textStyle = TextStyle(
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp,
+            color = PrimaryText,
+        ),
         leadingIcon = {
             Icon(
                 Icons.Filled.Search,
@@ -57,7 +64,12 @@ fun SearchBar(
                 tint = Color(0xFF666666) // Darker gray
             )
         },
-        placeholder = { Text(placeholder, color = Color.Gray) },
+        placeholder = {
+            Text(
+                placeholder,
+                style = MaterialTheme.typography.bodyMedium
+            )
+        },
         shape = RoundedCornerShape(8.dp),
         colors = TextFieldDefaults.colors(
             focusedTextColor = PrimaryText,

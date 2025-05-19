@@ -1,6 +1,7 @@
 package com.nyinyi.devhub.ui.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,6 +21,7 @@ fun ErrorStatus(
             else -> stringResource(R.string.text_refresh_failed)
         },
         modifier = modifier
-            .clickable { onRetry() }
+            .clickable { onRetry() },
+        style = MaterialTheme.typography.bodyMedium
     )
 }
