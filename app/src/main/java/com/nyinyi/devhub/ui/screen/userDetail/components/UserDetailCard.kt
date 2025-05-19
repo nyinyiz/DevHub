@@ -1,6 +1,7 @@
 package com.nyinyi.devhub.ui.screen.userDetail.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,23 +26,45 @@ fun UserDetailCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
     ) {
-        Row(
+        Column(
             modifier = Modifier
-                .padding(16.dp)
                 .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            UserAvatar(userDetail)
-            Spacer(modifier = Modifier.width(12.dp))
-            UserInfo(
-                userDetail = userDetail,
-                modifier = Modifier.weight(1f),
-            )
+            Row(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                UserAvatar(userDetail)
+                Spacer(modifier = Modifier.width(12.dp))
+                UserInfo(
+                    userDetail = userDetail,
+                    modifier = Modifier.weight(1f),
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                FollowButton(
+                    count = userDetail.followers,
+                    label = "Followers",
+                    modifier = Modifier.weight(1f)
+                )
+                FollowButton(
+                    count = userDetail.following,
+                    label = "Following",
+                    modifier = Modifier.weight(1f)
+                )
+            }
         }
     }
 }

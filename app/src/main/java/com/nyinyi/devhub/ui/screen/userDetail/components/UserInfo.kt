@@ -4,8 +4,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -36,13 +38,15 @@ fun UserInfo(
                 color = MaterialTheme.colorScheme.secondary
             ),
         )
-        // show location with icon if not empty
+
         if (userDetail.location.isNotEmpty()) {
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Icon(
-                    imageVector = Icons.Default.LocationOn,
+                    modifier = Modifier.size(16.dp),
+                    imageVector = Icons.Outlined.LocationOn,
                     contentDescription = "Location",
                     tint = SecondaryText,
                 )
@@ -55,19 +59,24 @@ fun UserInfo(
             }
         }
 
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            FollowButton(
-                count = userDetail.followers,
-                label = "Followers",
-                modifier = Modifier.weight(1f)
-            )
-            FollowButton(
-                count = userDetail.following,
-                label = "Following",
-                modifier = Modifier.weight(1f)
-            )
+        if (userDetail.email.isNotEmpty()) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Icon(
+                    modifier = Modifier.size(16.dp),
+                    imageVector = Icons.Outlined.Email,
+                    contentDescription = "Email",
+                    tint = SecondaryText,
+                )
+                Text(
+                    text = userDetail.email,
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        color = SecondaryText,
+                    ),
+                )
+            }
         }
     }
 }
