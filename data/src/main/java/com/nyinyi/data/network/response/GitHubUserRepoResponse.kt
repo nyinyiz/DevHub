@@ -12,4 +12,5 @@ data class GitHubUserRepoResponse(
     @SerializedName("language") val language: String?,
     @SerializedName("stargazers_count") val starCount: Int,
     @SerializedName("html_url") val htmlUrl: String,
+    @SerializedName("updated_at") val updatedAt: String
 )

@@ -4,6 +4,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,6 +40,7 @@ fun SearchBar(
     modifier: Modifier = Modifier,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
+    onSearch: (String) -> Unit,
     placeholder: String = "Search"
 ) {
     TextField(
@@ -80,7 +84,11 @@ fun SearchBar(
             focusedContainerColor = Background,
             unfocusedContainerColor = Background,
             disabledContainerColor = Color.White
-        )
+        ),
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+        keyboardActions = KeyboardActions(onSearch = {
+            onSearch(value.text)
+        })
     )
 }
 
@@ -92,7 +100,8 @@ fun SearchBarPreview() {
         SearchBar(
             value = textValue,
             onValueChange = { textValue = it },
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
+            onSearch = { }
         )
     }
 }

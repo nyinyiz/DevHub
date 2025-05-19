@@ -27,4 +27,10 @@ class GitHubRepositoryImpl @Inject constructor(
             mapper.mapToRepositoryDomain(it)
         }
     }
+
+    override fun getSearchUsers(query: String) = flowTransform {
+        api.searchUsers(query).let {
+            mapper.mapToUserDomain(GitHubUsersResponse(it.items))
+        }
+    }
 }

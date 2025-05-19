@@ -10,4 +10,5 @@ data class Repository(
     val language: String,
     val starCount: Int,
     val htmlUrl: String,
+    val updatedAt: String
 )

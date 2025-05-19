@@ -97,7 +97,10 @@ fun UserListScreen(
                     onValueChange = { searchText = it },
                     modifier = Modifier
                         .padding(bottom = 16.dp),
-                    placeholder = "Search GitHub Users"
+                    placeholder = "Search GitHub Users",
+                    onSearch = { query ->
+                        viewModel.searchUsers(query)
+                    }
                 )
 
                 if (state.value.isLoading || state.value.throwable != null) {

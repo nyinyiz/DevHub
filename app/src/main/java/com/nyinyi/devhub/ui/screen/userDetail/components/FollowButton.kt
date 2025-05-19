@@ -21,11 +21,14 @@ fun FollowButton(
 ) {
     FilledTonalButton(
         onClick = onClickWebView,
+        enabled = false,
         modifier = modifier,
         shape = RoundedCornerShape(18.dp),
         colors = ButtonDefaults.filledTonalButtonColors(
             containerColor = Primary.copy(alpha = 0.1f),
-            contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+            contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+            disabledContainerColor = Primary.copy(alpha = 0.1f),
+            disabledContentColor = MaterialTheme.colorScheme.onSecondaryContainer
         )
     ) {
         Text(
