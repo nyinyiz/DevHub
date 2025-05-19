@@ -16,11 +16,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
-// Dark color scheme
 private val DarkColorScheme = darkColorScheme(
     primary = Primary,
     secondary = Secondary,
-    tertiary = Tertiary, //using ruby for tertiary.
+    tertiary = Tertiary,
     background = Background,
     surface = Background,
     onPrimary = Color.White,
@@ -28,15 +27,14 @@ private val DarkColorScheme = darkColorScheme(
     onTertiary = Color.White,
     onBackground = PrimaryText,
     onSurface = PrimaryText,
-    primaryContainer = Primary, // Added primary container
+    primaryContainer = Primary,
     onPrimaryContainer = Color.White,
 )
 
-// Light color scheme
 private val LightColorScheme = lightColorScheme(
     primary = Primary,
     secondary = Secondary,
-    tertiary = Tertiary,  // Using ruby for tertiary.
+    tertiary = Tertiary,
     background = Background,
     surface = Background,
     onPrimary = Color.White,
@@ -44,15 +42,14 @@ private val LightColorScheme = lightColorScheme(
     onTertiary = Color.White,
     onBackground = PrimaryText,
     onSurface = PrimaryText,
-    primaryContainer = Primary, // Added primary container
+    primaryContainer = Primary,
     onPrimaryContainer = Color.White,
 )
 
 @Composable
 fun DevHubTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = false, // set to false
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
@@ -67,8 +64,8 @@ fun DevHubTheme(
     val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.setSystemBarsColor(
-            color = colorScheme.primaryContainer, // Set system bar color
-            darkIcons = false // Light text for status bar
+            color = colorScheme.primaryContainer,
+            darkIcons = false
         )
     }
 

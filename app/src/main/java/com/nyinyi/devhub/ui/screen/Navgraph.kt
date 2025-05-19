@@ -2,11 +2,15 @@ package com.nyinyi.devhub.ui.screen
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import androidx.navigation.navOptions
 import com.nyinyi.devhub.ui.screen.splash.SplashScreen
+import com.nyinyi.devhub.ui.screen.userDetail.UserDetailScreen
 import com.nyinyi.devhub.ui.screen.userlist.UserListScreen
+import com.nyinyi.devhub.ui.screen.webview.FullScreenWebView
 
 @Composable
 fun SetUpNavGraph(navController: NavHostController) {
@@ -27,7 +31,40 @@ fun SetUpNavGraph(navController: NavHostController) {
             }
         }
         composable(route = Screens.UserListScreen.route) {
-            UserListScreen()
+            UserListScreen(
+                onUserClick = { userName ->
+                    navController.navigate(Screens.UserDetailScreen.route + "/${userName}")
+                }
+            )
+        }
+        composable(
+            route = Screens.UserDetailScreen.route + "/{user_name}",
+            arguments = listOf(navArgument("user_name") {
+                type = NavType.StringType
+            })
+        ) { backStackEntry ->
+            val name =
+                backStackEntry.arguments?.getString("user_name") ?: ""
+            UserDetailScreen(
+                userName = name,
+                onBack = { navController.popBackStack() },
+                onClickWebView = { url ->
+                    navController.navigate(Screens.WebViewScreen.route + "/${url}")
+                }
+            )
+        }
+
+        composable(
+            route = Screens.WebViewScreen.route + "/{url}",
+            arguments = listOf(navArgument("url") {
+                type = NavType.StringType
+            })
+        ) { backStackEntry ->
+            val url = backStackEntry.arguments?.getString("url") ?: ""
+            FullScreenWebView(
+                url = url,
+                onBack = { navController.popBackStack() }
+            )
         }
     }
 }
