@@ -31,11 +31,9 @@ class UserListViewModel @Inject constructor(
     init {
         with(connectionObserver) {
             onConnected = {
-                // Complete the code here
                 getData()
             }
             onDisconnected = {
-                // Complete the code here
                 _state.update { it.copy(isLoading = false, throwable = DisconnectException) }
             }
             startObserving()
@@ -54,7 +52,6 @@ class UserListViewModel @Inject constructor(
                 _state.update { it.copy(isLoading = true, throwable = null) }
             }
             .onEach { users ->
-                // Complete the code here
                 users.forEach {
                     Timber.d("User: $it")
                 }
@@ -62,7 +59,6 @@ class UserListViewModel @Inject constructor(
             }
             .flowOn(dispatcherProvider.io())
             .catch { e ->
-                // Complete the code here
                 Timber.e(e, "Error fetching user list")
                 _state.update { it.copy(isLoading = false, throwable = e) }
             }
