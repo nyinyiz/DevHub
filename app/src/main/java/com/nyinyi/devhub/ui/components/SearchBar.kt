@@ -69,7 +69,7 @@ fun SearchBar(
                 style = MaterialTheme.typography.bodyMedium
             )
         },
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(12.dp),
         colors = TextFieldDefaults.colors(
             focusedTextColor = PrimaryText,
             unfocusedTextColor = Color.Gray,
