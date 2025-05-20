@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -44,7 +43,6 @@ fun UserListScreen(
     onUserClick: (String) -> Unit = {}
 ) {
     val state = viewModel.state.collectAsState()
-    val listState = rememberLazyListState()
     var searchText by rememberSaveable(stateSaver = TextFieldValue.Saver) {
         mutableStateOf(TextFieldValue(""))
     }
@@ -62,7 +60,7 @@ fun UserListScreen(
             TopAppBar(
                 title = {
                     Text(
-                        "GitHub Users",
+                        stringResource(R.string.app_name),
                         style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
                     )
                 },
@@ -106,8 +104,7 @@ fun UserListScreen(
                 if (state.value.isLoading || state.value.throwable != null) {
                     if (state.value.isLoading) {
                         LazyColumn(
-                            modifier = Modifier.fillMaxSize(),
-                            state = listState
+                            modifier = Modifier.fillMaxSize()
                         ) {
                             items(10) {
                                 ShimmerUserListItem()
@@ -125,10 +122,12 @@ fun UserListScreen(
                 }
 
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
-                    state = listState
+                    modifier = Modifier.fillMaxSize()
                 ) {
-                    items(state.value.users.size) { index ->
+                    items(
+                        count = state.value.users.size,
+                        key = { state.value.users[it].id }
+                    ) { index ->
                         UserListItem(
                             user = state.value.users[index],
                             onUserClick =
